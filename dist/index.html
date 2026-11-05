@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AES 加密与解密</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="aes-js.js"></script>
+<script defer src="crypto.js"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+<main>
+  <header>
+    <p class="tag">AES / ECB · UTF-8</p>
+    <h1>AES 加密与解密</h1>
+    <p>在浏览器中转换明文和密文。密码和输入内容均在本地处理。</p>
+  </header>
+  <form id="tool">
+    <div class="settings">
+      <label>操作<select name="operation"><option value="decrypt">解密</option><option value="encrypt">加密</option></select></label>
+      <label>密钥长度<select name="bits"><option value="128">128 位</option><option value="192">192 位</option><option value="256">256 位</option></select></label>
+      <label>填充<select name="padding"><option value="pkcs7">PKCS7Padding</option><option value="pkcs5">PKCS5Padding</option><option value="zero">ZeroPadding</option><option value="iso10126">ISO10126</option><option value="ansix923">ANSI X9.23</option><option value="none">No Padding</option></select></label>
+      <label>密文格式<select name="format"><option value="base64">Base64</option><option value="hex">Hex</option></select></label>
+    </div>
+    <label>密码<input name="password" type="text" spellcheck="false" autocapitalize="off" value="Arbitrary_Secret" autocomplete="off" required></label>
+    <p class="hint">密码按 UTF-8 转为字节，长度不足时在末尾补零。AES 数据块固定为 128 位。</p>
+    <div class="editors">
+      <label><span id="input-label">输入密文</span><textarea name="source" spellcheck="false"></textarea></label>
+      <label><span id="output-label">输出明文</span><textarea name="result" readonly spellcheck="false"></textarea></label>
+    </div>
+    <div class="actions">
+      <button id="run" type="submit">解密</button>
+      <button id="copy" type="button" disabled>复制结果</button>
+      <p id="status" role="status"></p>
+    </div>
+  </form>
+  <footer>ECB 适用于兼容已有系统。相同的明文块会产生相同的密文块。</footer>
+</main>
+</body>
+</html>
