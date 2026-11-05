@@ -1,21 +1,28 @@
 :root { color-scheme: dark; font: 16px/1.55 system-ui, sans-serif; color: #e4edf4; background: #10171d; }
 * { box-sizing: border-box; }
-main { width: min(960px, 100% - 32px); margin: clamp(28px, 7vw, 76px) auto; }
-header { margin-bottom: 30px; }
-h1 { font-size: clamp(32px, 6vw, 56px); line-height: 1.12; margin: 10px 0; }
+main {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(10px, 1.5vw, 24px);
+}
+header { margin-bottom: 12px; }
+h1 { font-size: clamp(24px, 3vw, 36px); line-height: 1.12; margin: 4px 0; }
 p { margin: 0; }
 header > p, footer, .hint { color: #a4b5c1; }
 .tag { color: #89e7c8; font: 700 13px monospace; letter-spacing: .13em; }
-form { background: #19242c; border: 1px solid #34454f; border-radius: 16px; padding: clamp(16px, 4vw, 32px); }
+form { flex: 1; display: flex; flex-direction: column; background: #19242c; border: 1px solid #34454f; border-radius: 16px; padding: clamp(10px, 1.5vw, 20px); }
 .settings, .editors { display: grid; gap: 16px; }
-.settings { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 18px; }
-.editors { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 20px 0; }
+.settings { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 10px; }
+.editors { flex: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 12px 0; }
+.editors label { grid-template-rows: auto 1fr; min-width: 0; }
 label { display: grid; gap: 6px; font-weight: 600; }
 input, select, textarea, button { font: inherit; }
 input, select, textarea { width: 100%; background: #10191f; color: inherit; border: 1px solid #4a606b; border-radius: 8px; padding: 9px 11px; }
-textarea { min-height: 180px; resize: vertical; font-family: monospace; }
+textarea { min-height: 280px; resize: vertical; font-family: monospace; }
 .hint, footer { font-size: 14px; margin-top: 8px; }
-footer { margin-top: 18px; }
+footer { margin-top: 8px; }
 .actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 button { background: #89e7c8; color: #102a23; font-weight: 700; border: 0; border-radius: 8px; padding: 8px 18px; cursor: pointer; }
 button + button { background: #334651; color: #e4edf4; }
@@ -24,4 +31,5 @@ button:disabled { opacity: .5; cursor: default; }
 @media (max-width: 640px) {
   .settings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .editors { grid-template-columns: 1fr; }
+  textarea { min-height: clamp(220px, 35vh, 360px); }
 }
