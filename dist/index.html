@@ -11,20 +11,21 @@
 </head>
 <body>
 <main>
-  <header>
-    <p class="tag">AES / ECB · UTF-8</p>
-    <h1>AES 加密与解密</h1>
-    <p>在浏览器中转换明文和密文。密码和输入内容均在本地处理。</p>
-  </header>
   <form id="tool">
-    <div class="settings">
-      <label>操作<select name="operation"><option value="decrypt">解密</option><option value="encrypt">加密</option></select></label>
-      <label>密钥长度<select name="bits"><option value="128">128 位</option><option value="192">192 位</option><option value="256">256 位</option></select></label>
-      <label>填充<select name="padding"><option value="pkcs7">PKCS7Padding</option><option value="pkcs5">PKCS5Padding</option><option value="zero">ZeroPadding</option><option value="iso10126">ISO10126</option><option value="ansix923">ANSI X9.23</option><option value="none">No Padding</option></select></label>
-      <label>密文格式<select name="format"><option value="base64">Base64</option><option value="hex">Hex</option></select></label>
+    <div class="toolbar">
+      <header>
+        <h1>AES 加密与解密</h1>
+        <p class="tag">ECB · UTF-8</p>
+      </header>
+      <div class="settings">
+        <label>操作<select name="operation"><option value="decrypt">解密</option><option value="encrypt">加密</option></select></label>
+        <label>密钥长度<select name="bits"><option value="128">128 位</option><option value="192">192 位</option><option value="256">256 位</option></select></label>
+        <label>填充<select name="padding"><option value="pkcs7">PKCS7Padding</option><option value="pkcs5">PKCS5Padding</option><option value="zero">ZeroPadding</option><option value="iso10126">ISO10126</option><option value="ansix923">ANSI X9.23</option><option value="none">No Padding</option></select></label>
+        <label>密文格式<select name="format"><option value="base64">Base64</option><option value="hex">Hex</option></select></label>
+        <label class="password">密码<input name="password" title="密码按 UTF-8 编码，长度不足时在末尾补零" type="text" spellcheck="false" autocapitalize="off" value="Arbitrary_Secret" autocomplete="off" required></label>
+      </div>
+      <button id="theme-toggle" class="secondary" type="button" aria-label="亮色主题" aria-pressed="false">暗色</button>
     </div>
-    <label>密码<input name="password" type="text" spellcheck="false" autocapitalize="off" value="Arbitrary_Secret" autocomplete="off" required></label>
-    <p class="hint">密码按 UTF-8 转为字节，长度不足时在末尾补零。AES 数据块固定为 128 位。</p>
     <div class="editors">
       <label><span id="input-label">输入密文</span><textarea name="source" spellcheck="false"></textarea></label>
       <div class="output-editor">
@@ -41,7 +42,7 @@
       <p id="status" role="status"></p>
     </div>
   </form>
-  <footer>ECB 适用于兼容已有系统。相同的明文块会产生相同的密文块。</footer>
+  <footer>输入内容在浏览器内处理。AES 数据块固定为 128 位，ECB 下相同明文块会产生相同密文块。</footer>
 </main>
 </body>
 </html>

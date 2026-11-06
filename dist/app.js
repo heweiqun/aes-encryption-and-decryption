@@ -72,3 +72,28 @@ formatJson.addEventListener('click', () => {
   }).join('');
   status.textContent = 'JSON 已格式化';
 });
+
+const themeToggle = document.querySelector('#theme-toggle');
+const root = document.documentElement;
+
+function setTheme(theme) {
+  const light = theme === 'light';
+  root.dataset.theme = light ? 'light' : 'dark';
+  themeToggle.textContent = light ? '亮色' : '暗色';
+  themeToggle.setAttribute('aria-pressed', String(light));
+}
+
+try {
+  setTheme(localStorage.getItem('aes-theme'));
+} catch {
+  setTheme('dark');
+}
+
+themeToggle.addEventListener('click', () => {
+  setTheme(root.dataset.theme === 'light' ? 'dark' : 'light');
+  try {
+    localStorage.setItem('aes-theme', root.dataset.theme);
+  } catch {
+    // The theme still works when storage is unavailable.
+  }
+});
