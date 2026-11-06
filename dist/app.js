@@ -29,6 +29,7 @@ form.addEventListener('submit', event => {
     copy.disabled = !fields.result.value;
     formatJson.disabled = copy.disabled || fields.operation.value !== 'decrypt';
     status.textContent = '转换完成';
+    if (!formatJson.disabled) formatPlaintextJson();
   } catch (error) {
     status.textContent = error.message;
   }
@@ -44,12 +45,12 @@ copy.addEventListener('click', async () => {
   }
 });
 
-formatJson.addEventListener('click', () => {
+function formatPlaintextJson(showError = false) {
   const value = fields.result.value;
   try {
     JSON.parse(value);
   } catch {
-    status.textContent = '明文不是有效的 JSON';
+    if (showError) status.textContent = '明文不是有效的 JSON';
     return;
   }
 
@@ -71,7 +72,9 @@ formatJson.addEventListener('click', () => {
     return token;
   }).join('');
   status.textContent = 'JSON 已格式化';
-});
+}
+
+formatJson.addEventListener('click', () => formatPlaintextJson(true));
 
 const themeToggle = document.querySelector('#theme-toggle');
 const root = document.documentElement;
