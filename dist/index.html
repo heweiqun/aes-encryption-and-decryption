@@ -27,7 +27,13 @@
     <p class="hint">密码按 UTF-8 转为字节，长度不足时在末尾补零。AES 数据块固定为 128 位。</p>
     <div class="editors">
       <label><span id="input-label">输入密文</span><textarea name="source" spellcheck="false"></textarea></label>
-      <label><span id="output-label">输出明文</span><textarea name="result" readonly spellcheck="false"></textarea></label>
+      <div class="output-editor">
+        <div class="output-heading">
+          <label id="output-label" for="result">输出明文</label>
+          <button id="format-json" type="button" disabled>格式化 JSON</button>
+        </div>
+        <textarea id="result" name="result" readonly spellcheck="false"></textarea>
+      </div>
     </div>
     <div class="actions">
       <button id="run" type="submit">解密</button>
